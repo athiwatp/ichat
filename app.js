@@ -17,12 +17,19 @@ io.on("connection", client => {
 			var field = m.split(" ")
 			io.send(client.name + " has renamed to " + field[1])
 			client.name = field[1]
-		} else if (m.startsWidth("@join")) {
+		} else if (m.startsWith("@join")) {
 			var field = m.split(" ")
 			client.join(field[1])
-		} else if (m.startsWidth("@leave")) {
+		} else if (m.startsWith("@leave")) {
 			var field = m.split(" ")
 			client.leave(field[1])
+		} else if (m.startsWith("@group")) {
+			var field = m.split(" ")
+			var message = ""
+			for (var i = 2; i < field.length; i++) {
+				message += field[i]
+			}
+			io.to(field[1]).send(client.name + ": " + message)
 		} else {
 			io.send(client.name + ": " + m)
 		}
