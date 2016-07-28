@@ -17,6 +17,7 @@
 				<textarea class="form-control" rows="5"></textarea>
 				<input class="form-control" placeholder="Type here"
 					autofocus>
+				<button id='clear' class="btn btn-danger">Clear</button>
 				<button type="submit" class="btn btn-primary">Send</button>
 			</form>
 		</div>
@@ -24,11 +25,20 @@
 		<script src="https://icode.run/jquery.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
+			$('#clear').click(clear)
+			function clear() {
+				$('textarea').html("")
+			}
 			var socket = io.connect("/")
 			socket.on("connect", () => {
 				socket.on("message", m => {
 					var x = $('textarea').html()
-					$('textarea').html(x + "\n" + m)
+					if (x == "") {
+						x = m
+					} else {
+						x = x + "\n" + m
+					}
+					$('textarea').html(x)
 				})
 			})
 
