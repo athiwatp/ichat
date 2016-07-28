@@ -10,7 +10,7 @@ function home(req, res) {
 }
 
 io.on("connection", client => {
-	console.log(client)
+	client.send("Welcome to iChat")
 })
 
 /*

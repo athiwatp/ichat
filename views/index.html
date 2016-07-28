@@ -24,7 +24,12 @@
 		<script src="https://icode.run/jquery.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
-			io.connect("/")
+			var socket = io.connect("/")
+			socket.on("connect", () => {
+				socket.on("message", m => {
+					$('textarea').html(m)
+				})
+			})
 		</script>
 	</body>
 </html>
