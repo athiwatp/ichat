@@ -17,6 +17,12 @@ io.on("connection", client => {
 			var field = m.split(" ")
 			io.send(client.name + " has renamed to " + field[1])
 			client.name = field[1]
+		} else if (m.startsWidth("@join")) {
+			var field = m.split(" ")
+			client.join(field[1])
+		} else if (m.startsWidth("@leave")) {
+			var field = m.split(" ")
+			client.leave(field[1])
 		} else {
 			io.send(client.name + ": " + m)
 		}
