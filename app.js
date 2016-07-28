@@ -10,14 +10,15 @@ function home(req, res) {
 }
 
 io.on("connection", client => {
+	client.name = "Anonymous"
 	client.send("Welcome to iChat")
 	client.on("message", m => {
 		if (m.startsWith("@name")) {
 			var field = m.split(" ")
+			io.send(client.name " has renamed to " + field[1])
 			client.name = field[1]
-			io.send(field[1] + " just joined")
 		} else {
-			io.send(m)
+			io.send(client.name + ": " + m)
 		}
 	})
 })
