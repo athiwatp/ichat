@@ -21,6 +21,9 @@ io.on("connection", client => {
 			io.send(client.name + ": " + m)
 		}
 	})
+	client.on("disconnect", () => {
+		io.send(client.name + " disconnected")
+	})
 })
 
 /*
