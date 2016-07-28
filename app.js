@@ -15,7 +15,7 @@ io.on("connection", client => {
 	client.on("message", m => {
 		if (m.startsWith("@name")) {
 			var field = m.split(" ")
-			io.send(client.name " has renamed to " + field[1])
+			io.send(client.name + " has renamed to " + field[1])
 			client.name = field[1]
 		} else {
 			io.send(client.name + ": " + m)
