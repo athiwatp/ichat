@@ -9,6 +9,13 @@
 			form * {
 				margin-top: 10px;
 			}
+			#history {
+				background: lightpink;
+				padding: 4px;
+				border-radius: 4px;
+				height: 200px;
+				overflow: auto;
+			}
 		</style>
 	</head>
 	<body>
@@ -34,7 +41,7 @@
 			socket.on("connect", () => {
 				socket.on("message", m => {
 					var x = $('#history').html()
-					if (x == null) {
+					if (x == "") {
 						x = m
 					} else {
 						x = x + "<br>" + m
