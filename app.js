@@ -11,6 +11,9 @@ function home(req, res) {
 
 io.on("connection", client => {
 	client.send("Welcome to iChat")
+	client.on("message", m => {
+		io.send(m)
+	})
 })
 
 /*
