@@ -30,6 +30,12 @@
 					$('textarea').html(m)
 				})
 			})
+
+			function send() {
+				var m = $('input').val()
+				$('input').val("")
+				socket.send(m)
+			}
 		</script>
 	</body>
 </html>
