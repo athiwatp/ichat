@@ -28,6 +28,7 @@
 			$('#clear').click(clear)
 			function clear() {
 				$('textarea').html("")
+				return false
 			}
 			var socket = io.connect("/")
 			socket.on("connect", () => {
