@@ -14,7 +14,7 @@
 	<body>
 		<div class="container">
 			<form action='javascript:send()'>
-				<textarea class="form-control" rows="5"></textarea>
+				<div id='history'></div>
 				<input class="form-control" placeholder="Type here"
 					autofocus>
 				<button type="submit" class="btn btn-primary">Send</button>
@@ -27,19 +27,19 @@
 		<script>
 			$('#clear').click(clear)
 			function clear() {
-				$('textarea').html("")
+				$('#history').html("")
 				return false
 			}
 			var socket = io.connect("/")
 			socket.on("connect", () => {
 				socket.on("message", m => {
-					var x = $('textarea').html()
-					if (x == "") {
+					var x = $('#history').html()
+					if (x == null) {
 						x = m
 					} else {
-						x = x + "\n" + m
+						x = x + "<br>" + m
 					}
-					$('textarea').html(x)
+					$('#history').html(x)
 				})
 			})
 
