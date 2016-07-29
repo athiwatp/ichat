@@ -53,8 +53,19 @@
 			function send() {
 				var m = $('input').val()
 				$('input').val("")
-				socket.send(m)
+				if (m == "@location") {
+					var o = {enableHighAccuraccy:true}
+					navigator.geolocation.getCurrentPosition(showLocation, error, o)
+				} else {
+					socket.send(m)
+				}
 			}
+			function showLocation(p) {
+				var s = 'location: ' + p.coords.latitude + ',' +
+										p.coords.longitude
+				socket.send(s)
+			}
+			function error(e) { }
 		</script>
 	</body>
 </html>
