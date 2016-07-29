@@ -70,6 +70,25 @@
 				socket.send(s)
 			}
 			function error(e) { }
+
+			$('input').keydown(start)
+			$('input').keyup(stop)
+			function start(e) {
+				if (e.which == 16) {
+					r.start()
+				}
+			}
+			function stop(e) {
+				if (e.which == 16) {
+					r.stop()
+				}
+			}
+			var r = new webkitSpeechRecognition()
+			r.lang = 'jp'
+			r.onresult = function(e) {
+				var s = e.results[0][0].transcript
+				socket.send(s)
+			}
 		</script>
 	</body>
 </html>
