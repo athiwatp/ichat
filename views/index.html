@@ -61,8 +61,12 @@
 				}
 			}
 			function showLocation(p) {
-				var s = 'location: ' + p.coords.latitude + ',' +
-										p.coords.longitude
+				// https://www.google.com/maps/@13.7668984,100.4911351,17z
+				var link = "https://www.google.com/maps/@" +
+							p.coords.latitude + ',' + 
+							p.coords.longitude + ',17z'
+
+				var s = "<a href='" + link + "' target='_blank'>Location</a>"
 				socket.send(s)
 			}
 			function error(e) { }
